@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Exercise #2 
-// Student Name:
-// Date: 
+// Student Name:Kieran Young
+// Date: 09-06-2020
 //
 //  Description: In this exercise, you need to design a multiplexer, where the  
 //  output acts according to the following truth table:
@@ -20,13 +20,17 @@
 
 `timescale 1ns / 100ps
 
-module mux(
+module mux(a,b,sel,out);
     //Todo: define inputs here
-    );
+    input a, b, sel;
+    output out;
+
     
     //Todo: define registers and wires here
+    
 
-
-    //Todo: define your logic here                 
+    //Todo: define your logic here    
+    assign #5 out = (sel == 0) ? a : (sel == 1) ? b : 0;
+             
       
 endmodule
