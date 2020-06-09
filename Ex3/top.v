@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Exercise #3 
-// Student Name:
-// Date: 
+// Student Name:Kieran Young
+// Date: 09-06-2020
 //
 //  Description: In this exercise, you need to design an up / down counter, where 
 //  if the rst=1, the counter should be set to zero. If enable=0, the value
@@ -18,13 +18,24 @@
 
 `timescale 1ns / 100ps
 
-module counter(
+module counter(clk, rst, counter_out);    //timer example p24 Verilog Notes
     //Todo: add ports 
-
-    );
+    input clk, rst;
+    output [7:0] counter_out;
+  
                     
     //Todo: add registers and wires, if needed
+    reg [7:0] counter;
+
 
     //Todo: add user logic
-      
+    assign counter_out = counter;
+
+    always @ (posedge clk or posedge rst)
+        if (rst)
+        counter <= 0;
+        else 
+        counter <= counter + 1;
+
+
 endmodule
