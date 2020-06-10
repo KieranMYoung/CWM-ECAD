@@ -22,6 +22,7 @@ module top_tb(
     reg err;
 
     wire [7:0] counter_out;
+    reg [7:0] t;
 
 //Todo: Clock generation
     initial begin 
@@ -31,17 +32,20 @@ module top_tb(
     end
 
 //Todo: User logic
+     
     initial begin
     rst = 0;
     err = 0;
-    counter_out = 0;
+    t = 0;
     
+
+
     end
     
 //Todo: Finish test, check for success
 
 
 //Todo: Instantiate counter module
-    counter top(clk, rst, counter_out);
+    counter counter_one (clk, rst, counter_out);
 
 endmodule 
