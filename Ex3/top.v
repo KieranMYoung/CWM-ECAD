@@ -20,7 +20,8 @@
 
 module counter(clk, rst, counter_out);    //timer example p24 Verilog Notes
     //Todo: add ports 
-    input clk, rst;
+    input clk;
+    input rst;
     output reg [7:0] counter_out;
   
                     
@@ -31,9 +32,9 @@ module counter(clk, rst, counter_out);    //timer example p24 Verilog Notes
     
     always @ (posedge clk or posedge rst)
         if (rst)
-        counter_out <= 0;
+        counter_out <= 1'b0;
         else 
-        counter_out <= counter_out + 1;
+        counter_out <= counter_out + 1'b1;
 
  
 

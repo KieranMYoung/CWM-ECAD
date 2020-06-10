@@ -42,6 +42,6 @@ module top_tb(
 
 
 //Todo: Instantiate counter module
-    counter top(.clk(clk), .rst(rst), .counter_out(counter_out) );
+    counter top(clk, rst, counter_out);
 
 endmodule 
