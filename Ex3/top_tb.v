@@ -21,8 +21,7 @@ module top_tb(
     reg rst;
     reg err;
 
-    wire [7:0] counter_out;
-    reg [7:0] t;
+    reg [7:0] counter_out;
 
 //Todo: Clock generation
     initial begin 
@@ -36,14 +35,24 @@ module top_tb(
     initial begin
     rst = 0;
     err = 0;
-    t = 0;
-    
+    counter_out = 0;
+    forever begin
+    #clk_period
+      if (rst == 1)
+        begin 
+        counter_out = 0;
+        end     
 
 
     end
     
 //Todo: Finish test, check for success
-
+    initial begin
+        #50 
+        if (err==0)
+          $display("***TEST PASSED! :) ***");
+        $finish;
+      end
 
 //Todo: Instantiate counter module
     counter counter_one (clk, rst, counter_out);
