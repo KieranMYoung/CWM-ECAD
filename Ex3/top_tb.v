@@ -14,7 +14,7 @@ module top_tb(
     );
     
 //Todo: Parameters
-    clk_period = 10;
+    parameter clk_period = 20;
 
 //Todo: Regitsers and wires
     reg clk;
@@ -31,26 +31,17 @@ module top_tb(
     end
 
 //Todo: User logic
-    initial begin 
-    err = 0;
+    initial begin
     rst = 0;
-      forever begin
-      #clk_period
-        if (counter_out == 0)               //test reset
-          begin
-          $display("***Error with RESET")
-          err = 1;
-          end
-        if (counter_out == ~1)
-          begin
-          $display("***Error with Counter")
-          err = 1;
-          end
+    err = 0;
+    counter_out = 0;
+    
     end
-
     
 //Todo: Finish test, check for success
 
+
 //Todo: Instantiate counter module
- 
+    counter top(.clk(clk), .rst(rst), .counter_out(counter_out) );
+
 endmodule 
