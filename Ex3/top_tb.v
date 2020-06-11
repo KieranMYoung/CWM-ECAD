@@ -19,7 +19,9 @@ module top_tb(
 //Todo: Regitsers and wires
     reg clk;
     reg rst;
+    reg enable;
     reg err;
+    reg direction;
 
     wire [7:0] counter_out;
 
@@ -33,13 +35,25 @@ module top_tb(
 //Todo: User logic
      
     initial begin
-    rst = 0;
+    rst = 1;                            // Test Enable
+    enable = 0;
+    direction = 1;
     err = 0;
+    #(clk_period * 5);               
+
+    rst = 1;                              // Test reset
+    enable = 1;
+    #(clk_period * 5);                
+
+    rst = 0;                             // Test counting up
+    enable = 1;
+    direction = 1;
+    #(clk_period * 10);                
+
+    direction = 0;                       // Test counting down & negative numbers
     #(clk_period * 20);
-    rst = 1;
-    #(clk_period * 10);
-    rst = 0;
-    #(clk_period * 20);
+
+
     end
     
 //Todo: Finish test, check for success
@@ -51,6 +65,6 @@ module top_tb(
     end
 
 //Todo: Instantiate counter module
-    counter counter_one (clk, rst, counter_out);
+    counter counter_one (clk, rst, enable, direction, counter_out);
 
 endmodule 

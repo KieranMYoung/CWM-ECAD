@@ -18,10 +18,12 @@
 
 `timescale 1ns / 100ps
 
-module counter(clk, rst, counter_out);    //timer example p24 Verilog Notes
+module counter(clk, rst, enable, direction, counter_out);    
     //Todo: add ports 
     input clk;
     input rst;
+    input enable;
+    input direction;
     output [7:0] counter_out;
   
                     
@@ -34,10 +36,14 @@ module counter(clk, rst, counter_out);    //timer example p24 Verilog Notes
     //Todo: add user logic
     
     always @ (posedge clk or posedge rst)
+      if (enable == 0)
+      counter_out <= counter_out;
+      else
         if (rst)
         counter_out <= 1'b0;
         else 
-        counter_out <= counter_out + 1'b1;
-
-
+          if (direction == 1)
+          counter_out <= counter_out + 1'b1;
+          else 
+          counter_out <= counter_out - 1'b1;
 endmodule
