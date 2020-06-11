@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Exercise #4 
-// Student Name:
-// Date: 
+// Student Name:Kieran Young
+// Date: 11-06-2020
 //
 //  Description: In this exercise, you need to design an electronic dice, following
 //  the diagram provided in the exercises documentation. The dice rolls as long as
@@ -28,17 +28,20 @@ input button;
 output [2:0] throw;
 
 // Registers & Wires
-reg [2:0] throw;
+reg [2:0] throw;                // Stores the current value of the dice roll 
 initial begin
-throw = 3'b1;
+throw = 3'b1;                   // The first value
 end
 
 // Logic
-if (button)
-    always @ (posedge clk)
-      if (throw < 3'b111)
-      throw = throw + 1;
+always @ (posedge clk)
+  begin
+  if (button)                     // While the button is logic 1,
+      if (throw < 3'b110)         // Creates a throw which starts at 1, and 
+      throw = throw + 1;          //  cycles up to 6, then back to 1...
       else throw = 1;
-
+  if (rst)
+  throw = 3'b000;               // Output if the button is logic 0
+  end
 
 endmodule
