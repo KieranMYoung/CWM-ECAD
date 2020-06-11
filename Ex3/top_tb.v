@@ -36,9 +36,9 @@ module top_tb(
     rst = 0;
     err = 0;
     counter_out = 0;
-    forever begin
-    #clk_period
-      if (rst == 1)
+    forever begin        //allow the counter to output a constantly increasing 'counter_out'
+    #clk_period;
+      if (rst == 1)       
         begin 
         counter_out = 0;
         end     
@@ -48,11 +48,11 @@ module top_tb(
     
 //Todo: Finish test, check for success
     initial begin
-        #50 
+        #50;
         if (err==0)
           $display("***TEST PASSED! :) ***");
         $finish;
-      end
+    end
 
 //Todo: Instantiate counter module
     counter counter_one (clk, rst, counter_out);
