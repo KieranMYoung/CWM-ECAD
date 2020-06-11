@@ -16,3 +16,29 @@
 //  You need to write the whole file.
 //////////////////////////////////////////////////////////////////////////////////
 
+`timescale 1ns / 100ps 
+
+module Dice(clk, rst, button, throw);
+
+// Ports
+
+input clk;
+input rst;
+input button;
+output [2:0] throw;
+
+// Registers & Wires
+reg [2:0] throw;
+initial begin
+throw = 3'b1;
+end
+
+// Logic
+if (button)
+    always @ (posedge clk)
+      if (throw < 3'b111)
+      throw = throw + 1;
+      else throw = 1;
+
+
+endmodule
