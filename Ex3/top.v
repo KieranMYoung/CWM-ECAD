@@ -27,6 +27,9 @@ module counter(clk, rst, counter_out);    //timer example p24 Verilog Notes
                     
     //Todo: add registers and wires, if needed
     reg [7:0] counter_out;
+    initial begin
+    counter_out = 0;
+    end
 
     //Todo: add user logic
     

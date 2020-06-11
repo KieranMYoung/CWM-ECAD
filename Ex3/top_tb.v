@@ -21,7 +21,7 @@ module top_tb(
     reg rst;
     reg err;
 
-    reg [7:0] counter_out;
+    wire [7:0] counter_out;
 
 //Todo: Clock generation
     initial begin 
@@ -35,20 +35,16 @@ module top_tb(
     initial begin
     rst = 0;
     err = 0;
-    counter_out = 0;
-    forever begin        //allow the counter to output a constantly increasing 'counter_out'
-    #clk_period;
-      if (rst == 1)       
-        begin 
-        counter_out = 0;
-        end     
-
-
+    #(clk_period * 20);
+    rst = 1;
+    #(clk_period * 10);
+    rst = 0;
+    #(clk_period * 20);
     end
     
 //Todo: Finish test, check for success
     initial begin
-        #50;
+        #(clk_period * 50);
         if (err==0)
           $display("***TEST PASSED! :) ***");
         $finish;
