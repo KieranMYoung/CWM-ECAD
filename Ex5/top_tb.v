@@ -16,9 +16,12 @@ parameter clk_period = 10;
 
 // Registers & Wires
 reg clk;
-reg red;
-reg amber;
-reg green;
+reg state;
+
+wire red;
+wire amber;
+wire green;
+
 
 // Clock generation
     initial begin 
@@ -29,18 +32,13 @@ reg green;
 
 // Logic 
 initial begin
-    red = 1;
-    amber = 0;
-    green = 0; 
+  state = 3'b000;                  // Changes in states
+  #(clk_period * 4);
+  state = 3'b001;
+  #(clk_period * 4);
+  state = 3'b000;
 end
 
-// Finish test, check for success
-//    initial begin
-//        #(clk_period * 50);
-//        if (err==0)
-//          $display("***TEST PASSED! :) ***");
-//        $finish;
-//   end
 
 // Instantiate module
     TrafficLights lights(clk, red, amber, green);

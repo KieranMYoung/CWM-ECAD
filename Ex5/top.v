@@ -24,12 +24,29 @@ output amber;
 output green;
 
 // Registers & Wires
+reg red;                      // procedural assignment to a non-register red is
+reg amber;                    // not permitted, hence outputs are registers
+reg green;
+reg state;
+
+// Initial Values
+initial begin
+  red <= 0;                    
+  amber <= 0;
+  green <= 0;
+end
 
 // Logic                      //red -> red/amber -> green -> amber -> red...
 always @ (posedge clk)
-  if (red && !amber && !green)
-    assign red <= 1;
-    assign amber <= 1;
-    assign green <= 0;
+  begin
+  if (state == 3'b000)
+   red = 1;
+   amber = 0;
+   green = 0;
+  if (state == 3'b001)
+   red = 1;
+   amber = 1;
+   green = 0;
+  end
 
 endmodule
