@@ -27,7 +27,7 @@ output green;
 reg red;                      // procedural assignment to a non-register red is
 reg amber;                    // not permitted, hence outputs are registers
 reg green;
-reg state;
+reg [2:0] state;
 
 // Initial Values
 initial begin
@@ -40,13 +40,29 @@ end
 always @ (posedge clk)
   begin
   if (state == 3'b000)
-   red = 1;
-   amber = 0;
-   green = 0;
-  if (state == 3'b001)
-   red = 1;
-   amber = 1;
-   green = 0;
-  end
+  red = 1;
+  amber = 0;
+  green = 0;
+  else 
+    if (state == 3'b001)
+    red = 1;
+    amber = 1;
+    green = 0;
+    else 
+      if (state == 3'b010)
+      red = 0;
+      amber = 0;
+      green = 1;
+      else
+        if (state == 3'b011)
+        red = 0;
+        amber = 1;
+        green = 0;
+        else
+          red = 1;
+          amber = 0;
+          green = 0;
+
+    end
 
 endmodule
