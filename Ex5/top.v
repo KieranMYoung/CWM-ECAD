@@ -29,12 +29,6 @@ reg amber;                    // not permitted, hence outputs are registers
 reg green;
 reg [2:0] state;
 
-// Initial Values
-initial begin
-  red <= 0;                    
-  amber <= 0;
-  green <= 0;
-end
 
 // Logic                      //red -> red/amber -> green -> amber -> red...
 always @ (posedge clk)
@@ -43,12 +37,12 @@ always @ (posedge clk)
   red = 1;
   amber = 0;
   green = 0;
-  else 
+  else
     if (state == 3'b001)
     red = 1;
     amber = 1;
     green = 0;
-    else 
+    else
       if (state == 3'b010)
       red = 0;
       amber = 0;
@@ -63,6 +57,7 @@ always @ (posedge clk)
           amber = 0;
           green = 0;
 
-    end
+  end
+    
 
 endmodule
